@@ -142,6 +142,14 @@ class SearchMET():
 
     def artists(self):
         #List of artists
+        """
+        Description: Returns list of artists
+
+        Parameters: None
+
+        Returns:
+            artists(numpylist):artist associated with images
+        """
         return self.df_objects["artistDisplayName"].unique()
     
 if __name__=="__main__":
