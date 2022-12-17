@@ -111,37 +111,75 @@ class SearchMET():
         if len(self.cropped_imgs)>10:
             self.cropped_imgs = random.sample(self.cropped_imgs, 10)
 
+        print("Processing complete.")
 
     def objects(self):
-        #title
-        #artist
-        #department
+        """
+        Description: Returns list of objects
+
+        Parameters: None
+
+        Returns:
+            dataframe of objects
+        """
         return self.df_objects[["objectID", "title", "artistDisplayName"]]
 
     def regions(self):
-        #list of regions
+        """
+        Description: Returns list of regions
+
+        Parameters: None
+
+        Returns:
+            list of regions
+        """
         return self.df_objects[self.df_objects["region"] != ""]["region"].unique()
 
     def titles(self):
+        """
+        Description: Returns list of titles
+
+        Parameters: None
+
+        Returns:
+            list of titles
+        """
         return self.df_objects[self.df_objects["title"] != ""]["title"].unique()
 
     def cropped_images(self):
-      return self.cropped_imgs
-        #title and image url
-        #return s.df_images.merge(s.df_objects, on="objectID")[["objectID", "title", "url"]]
+        """
+        Description: Returns list of images
+
+        Parameters: None
+
+        Returns:
+            list of pillow images
+        """
+        return self.cropped_imgs
     
     def export_image_icons(self):
-      for i, img in enumerate(self.cropped_imgs):
-        img.save(f"image{i}.ico", sizes = [(256,256)])
-        #title and image url
-        #return s.df_images.merge(s.df_objects, on="objectID")[["objectID", "title", "url"]]
+
+        """
+        Description: Saves cropped images to files in working directory
+
+        Parameters: None
+
+        Returns: None
+        """
+        for i, img in enumerate(self.cropped_imgs):
+            img.save(f"image{i}.ico", sizes = [(256,256)])
     
     def images(self):
-        #title and image url
+        """
+        Description: Returns image descriptions
+
+        Parameters: None
+
+        Returns: Dataframe
+        """
         return self.df_images.merge(self.df_objects, on="objectID")[["objectID", "title", "url"]]
 
     def artists(self):
-        #List of artists
         """
         Description: Returns list of artists
 
@@ -151,17 +189,5 @@ class SearchMET():
             artists(numpylist):artist associated with images
         """
         return self.df_objects["artistDisplayName"].unique()
-    
-if __name__=="__main__":
-    s=SearchMET()
-    imgs = s.cropped_images()
-    print(type(imgs))
-    print(len(imgs))
-    print(s.artists())
-    print(s.objects())
-    print(s.regions())
-    print(s.images())
-    print(s.titles())
-    s.export_image_icons()
     
 
