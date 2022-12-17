@@ -1,0 +1,23 @@
+:py:mod:`met_icon_search`
+=========================
+
+.. py:module:: met_icon_search
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   met_icon_search/index.rst
+
+
+Package Contents
+----------------
+
+.. py:data:: __version__
+   
+
+   
+
